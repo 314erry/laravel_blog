@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /vendor/
 node_modules/
 npm-debug.log
@@ -28,3 +29,11 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+=======
+/vendor
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
+>>>>>>> 80f5c1e (commit inicial)
