@@ -17,10 +17,4 @@ use Illuminate\Foundation\Testing\Constraints\PageConstraint;
 Route::get('contact', 'PagesController@GetContact');
 Route::get('about', 'PagesController@GetAbout');
 Route::get('/', 'PagesController@GetIndex');
-
 Route::resource('posts', 'PostController');
-
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-

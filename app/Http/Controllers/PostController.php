@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -46,11 +47,11 @@ class PostController extends Controller
 
         // Guardar no banco de dados
         $post = new Post;
-
         $post->title = $request->title;
         $post->body = $request->body;
-
         $post->save();
+
+        Session::flash('success', 'Blog post succesfully saved!');
 
         // Redirecionar pra outra pagina
         return redirect()->route('posts.show', $post->id);
@@ -64,7 +65,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show')->withPost($post);
     }
 
     /**
