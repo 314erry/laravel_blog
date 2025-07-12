@@ -45,6 +45,7 @@
             </table>
 
             <div class="text-center">
+                <p class="text-muted">Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}</p>
                 {!! $posts->links() !!}
             </div>
         </div>

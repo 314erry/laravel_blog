@@ -15,35 +15,14 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="post">
-                <h3>Title</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti laudantium facilis, commodi pariatur maxime rerum repudiandae ducimus sapiente at delectus incidunt ut in optio magnam dolorum atque obcaecati quasi necessitatibus?</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Title</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti laudantium facilis, commodi pariatur maxime rerum repudiandae ducimus sapiente at delectus incidunt ut in optio magnam dolorum atque obcaecati quasi necessitatibus?</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Title</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti laudantium facilis, commodi pariatur maxime rerum repudiandae ducimus sapiente at delectus incidunt ut in optio magnam dolorum atque obcaecati quasi necessitatibus?</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-                <h3>Title</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti laudantium facilis, commodi pariatur maxime rerum repudiandae ducimus sapiente at delectus incidunt ut in optio magnam dolorum atque obcaecati quasi necessitatibus?</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-            </div>
+            @foreach ($posts as $post)    
+                <div class="post">
+                    <h3>{{ $post->title }}</h3>
+                    <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) > 300 ? '...' : '' }}</p>
+                    {!! Html::linkRoute('posts.show', 'Read More', [$post->id], ['class' => 'btn btn-primary'])!!}
+                </div>
+                <hr>
+            @endforeach
         </div>
 
         <div class="col-md-3 col-md-offset-1">

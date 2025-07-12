@@ -1,17 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 
 class PagesController extends Controller {
 
     public function getIndex() {
-        // Processa variaveis de dado ou parametros
-        // Fala com o MODEL
-        // Recebe dados do MODEL
-        // Compilar ou processa dados do MODEL se necessario
-        // passa esse dado para a view correta
-
-        return view('pages.welcome');
+        $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+        return view('pages.welcome')->withPosts($posts);
     }
 
     public function getAbout() {
