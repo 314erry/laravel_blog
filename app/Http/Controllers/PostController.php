@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -42,13 +43,14 @@ class PostController extends Controller
     {
         // Validar os dados.
         $this->validate($request, [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:posts,title',
             'body' => 'required'
         ]);
 
         // Guardar no banco de dados
         $post = new Post;
         $post->title = $request->title;
+        $post->slug = Str::slug($request->title, '-');
         $post->body = $request->body;
         $post->save();
 
@@ -92,12 +94,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:posts,title,' . $id,
             'body' => 'required'
         ]);
 
         $post = Post::find($id);
         $post->title = $request->input('title');
+        $post->slug = Str::slug($request->input('title'), '-');
         $post->body = $request->input('body');
         $post->save();
 

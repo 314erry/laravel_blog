@@ -14,6 +14,7 @@
 use App\Http\Controllers\PagesController;
 use Illuminate\Foundation\Testing\Constraints\PageConstraint;
 
+Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@GetSingle'])->where('slug', '[\w\d\-\_]+');
 Route::get('contact', 'PagesController@GetContact');
 Route::get('about', 'PagesController@GetAbout');
 Route::get('/', 'PagesController@GetIndex');
